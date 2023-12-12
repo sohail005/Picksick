@@ -3,8 +3,9 @@ import { Text, StyleSheet, View, Image, useWindowDimensions, TextInput, Touchabl
 import { AppColors } from "../Colors";
 import CustomErrorMsg from "../Commons/CustomErrorMsg";
 import LinearGradient from "react-native-linear-gradient";
+import { AppText } from "../Text";
 
-const Login = () => {
+const Login = ({ navigation }) => {
 	const { height, width, fontScale } = useWindowDimensions();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -12,6 +13,10 @@ const Login = () => {
 	const [passwordErr, setPasswordErr] = useState("");
 	const [modal, setModal] = useState(true);
 
+	const CLoseModal = () => {
+		setModal(false)
+		navigation.navigate('TimeLine')
+	}
 
 	const Warningpop = () => {
 		return (
@@ -29,7 +34,7 @@ const Login = () => {
 							<Text style={styles.tryAgain}>Try Again</Text>
 						</TouchableOpacity>
 						<View style={styles.devider} />
-						<TouchableOpacity activeOpacity={0.8} style={styles.button1}>
+						<TouchableOpacity onPress={() => CLoseModal()} activeOpacity={0.8} style={styles.button1}>
 							<Text style={styles.tryAgain}>Sign up</Text>
 						</TouchableOpacity>
 					</View>
@@ -41,7 +46,7 @@ const Login = () => {
 
 		<View style={styles.container}>
 
-			<Text style={[styles.logo, { fontSize: width / 5 }]}>PickSick</Text>
+			<Text style={[styles.logo, { fontSize: width / 5 }]}>{AppText.AppName}</Text>
 			<View style={[styles.inputContainer, { width: width - 100 }]}>
 				<TextInput
 					style={styles.input}
@@ -80,7 +85,7 @@ const Login = () => {
 			{/* Button */}
 			<View>
 				<LinearGradient colors={['#FF00B8', '#FF0000']} style={styles.linearGradient}>
-					<TouchableOpacity activeOpacity={0.8} style={[styles.button, { width: width - 100 }]}>
+					<TouchableOpacity onPress={() => setModal(true)} activeOpacity={0.8} style={[styles.button, { width: width - 100 }]}>
 						<Text style={styles.loginText}>Login</Text>
 					</TouchableOpacity>
 				</LinearGradient>
