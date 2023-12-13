@@ -1,10 +1,11 @@
-import { FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import { ActivityIndicator, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import InstaStory from 'react-native-insta-story';
 import Header from '../Commons/Header';
 import { AppColors } from '../Colors';
 import Swiper from 'react-native-swiper';
-
+import BottomTab from '../Commons/BottomTab';
+import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 
 const data = [
     {
@@ -184,6 +185,19 @@ const posts = [
         commentsCount: '114',
         liked: false,
         profile: 'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png'
+    },
+    {
+        id: 2,
+        username: 'Sohail.code',
+        description: '',
+        location: 'Los Angeles',
+        postTime: '3h',
+        images: [{ id: 0, image: 'https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-hipster-lambersexual-modelmodern-man-dressed-white-shirt-fashion-male-posing-street-background-sunglasses-outdoors-sunset_158538-20630.jpg' },
+        { id: 0, image: 'https://img.freepik.com/premium-photo/portrait-handsome-smiling-stylish-hipster-lambersexual-modelmodern-man-dressed-blue-shirt-fashion-male-posing-street-background-near-skyscrapers-sunglasses_158538-21216.jpg' }],
+        likesCount: '1000',
+        commentsCount: '114',
+        liked: false,
+        profile: 'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png'
     }
 ]
 const TimeLine = () => {
@@ -217,97 +231,104 @@ const TimeLine = () => {
         }, 2000);
     }, []);
     return (
-        <ScrollView
-        refreshControl={
-            <RefreshControl colors={['#000',AppColors.pinkColor]} progressViewOffset={0.5} tintColor={'red'} refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        style={{ width: width, backgroundColor: AppColors.backgroundColor, flex: 1 }}>
-            <Header />
-            {/* Story container */}
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={{ top: -13, marginRight: -15 }}>
-                    <View style={{ zIndex: 1 }}>
-                        <Image source={require('../Assets/Add_Plus_Circle.png')} style={styles.plusiconTop} />
+        <View style={{ flex: 1 }}>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl colors={['#000', AppColors.pinkColor]} progressViewOffset={0.5} tintColor={'red'} refreshing={refreshing} onRefresh={onRefresh} />
+                }
+                style={{ width: width, backgroundColor: AppColors.backgroundColor, flex: 1 }}>
+                <Header />
+                {/* Story container */}
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ top: -13, marginRight: -15 }}>
+                        <View style={{ zIndex: 1 }}>
+                            <Image source={require('../Assets/Add_Plus_Circle.png')} style={styles.plusiconTop} />
+                        </View>
+                        <InstaStory
+                            data={userStories}
+                            duration={10}
+                            avatarSize={70}
+                            showAvatarText={true}
+                            unPressedBorderColor={AppColors.pinkColor}
+                            unPressedAvatarTextColor={AppColors.blackText}
+                        />
                     </View>
-                    <InstaStory
-                        data={userStories}
-                        duration={10}
-                        avatarSize={70}
-                        showAvatarText={true}
-                        unPressedBorderColor={AppColors.pinkColor}
-                        unPressedAvatarTextColor={AppColors.blackText}
-                    />
-                </View>
-                <View style={{ width: '80%', borderRadius: 100 / 2 }}>
-                    <InstaStory
-                        data={data}
-                        duration={10}
-                        avatarSize={70}
-                        showAvatarText={true}
-                        unPressedBorderColor={AppColors.pinkColor}
-                        unPressedAvatarTextColor={AppColors.blackText}
+                    <View style={{ width: '80%', borderRadius: 100 / 2 }}>
+                        <InstaStory
+                            data={data}
+                            duration={10}
+                            avatarSize={70}
+                            showAvatarText={true}
+                            unPressedBorderColor={AppColors.pinkColor}
+                            unPressedAvatarTextColor={AppColors.blackText}
 
-                    />
+                        />
+                    </View>
                 </View>
-            </View>
-            {/* Story container End*/}
-            {/* posts started */}
-            <View style={{ width: width, alignItems: 'center' }}>
-                <FlatList
-                    data={posts}
-                    keyExtractor={(item) => item.id}
-                    alwaysBounceVertical={true}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <View style={{ width: width - 30 }}>
-                                <View style={styles.itemContainer}>
-                                    <View style={styles.itemContainerTop}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Image source={{ uri: item.profile }} style={styles.itemProfileimage} />
-                                            <View style={{ left: 5 }}>
-                                                <Text style={{ color: AppColors.blackText, fontSize: 16 }}>{item.username}</Text>
-                                                <Text style={{ color: AppColors.grayText, fontSize: 10 }}>{item.postTime}. {item.location}</Text>
+                {/* Story container End*/}
+                {/* posts started */}
+                <View style={{ width: width, alignItems: 'center' }}>
+                    <FlatList
+                        data={posts}
+                        keyExtractor={(item) => item.id}
+                        alwaysBounceVertical={true}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <View style={{ width: width - 30 }}>
+                                    <View style={styles.itemContainer}>
+                                        <View style={styles.itemContainerTop}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                <Image source={{ uri: item.profile }} style={styles.itemProfileimage} />
+                                                <View style={{ left: 5 }}>
+                                                    <Text style={{ color: AppColors.blackText, fontSize: 16 }}>{item.username}</Text>
+                                                    <Text style={{ color: AppColors.grayText, fontSize: 10 }}>{item.postTime}. {item.location}</Text>
+                                                </View>
                                             </View>
+                                            <Image source={require('../Assets/dots.png')} resizeMode='contain' style={{ height: 20,width:30, marginRight: 10 }} />
                                         </View>
-                                        <Image source={require('../Assets/More_Vertical.png')} style={{ height: 20, marginRight: 10 }} />
-                                    </View>
-                                    <View style={{ width: '100%', height: height / 3.5 }}>
-                                        <Swiper style={{}} showsButtons={false} activeDotColor={AppColors.pinkColor} >
-                                            {item.images.map((itemimg) => {
-                                                return (
-                                                    <View key={itemimg.id} style={{ margin: 12, borderRadius: 15, elevation: 5, shadowColor: AppColors.pinkColor, shadowOpacity: 0.8 }}>
-                                                        <Image source={{ uri: itemimg.image }} resizeMode='cover' style={{ width: '100%', height: '100%', borderRadius: 15, }} />
-                                                    </View>
-                                                )
-                                            })
+                                        <View style={{ width: '100%', height: height / 3.5 }}>
+                                            <Swiper loop={false} loadMinimal={true} animated={true}
+                                            automaticallyAdjustContentInsets={true}
+                                            loadMinimalLoader={<ActivityIndicator color={AppColors.pinkColor}/>}
+                                            style={{}} showsButtons={false} activeDotColor={AppColors.pinkColor} >
+                                                {item.images.map((itemimg) => {
+                                                    return (
+                                                        <View key={itemimg.id} style={{ margin: 12, borderRadius: 15, elevation: 5}}>
+                                                            <Image source={{ uri: itemimg.image }} resizeMode='cover' style={{ width: '100%', height: '100%', borderRadius: 15, }} />
+                                                        </View>
+                                                    )
+                                                })
+                                                }
+                                            </Swiper>
+                                        </View>
+                                        {/* like and comments control */}
+                                        <View style={styles.controlsContainer}>
+                                            {item.liked ?
+                                                <Image source={require('../Assets/heartred.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
+                                                :
+                                                <Image source={require('../Assets/heart.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
                                             }
-                                        </Swiper>
-                                    </View>
-                                    {/* like and comments control */}
-                                    <View style={styles.controlsContainer}>
-                                        {item.liked ?
-                                            <Image source={require('../Assets/Heart_01.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
-                                            :
-                                            <Image source={require('../Assets/heartoutline.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
-                                        }
-                                        <Image source={require('../Assets/Chat_Circle.png')} resizeMode='contain' style={{ height: 25, width: 25, tintColor: '#000' }} />
-                                        <Image source={require('../Assets/Paper_Plane.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
-                                    </View>
-                                    <View style={{ left: 20, margin: 5 }}>
-                                        <Text style={{ color: AppColors.blackText, fontSize: 12, fontWeight: '700' }}>{item.likesCount} Likes</Text>
-                                        <Text style={{ color: AppColors.grayText, fontSize: 10, fontWeight: '700' }}>View all {item.commentsCount} Comments</Text>
-                                    </View>
+                                            <Image source={require('../Assets/speech-bubble.png')} resizeMode='contain' style={{ height: 24, width: 24, tintColor: '#000' }} />
+                                            <Image source={require('../Assets/send.png')} resizeMode='contain' style={{ height: 22, width: 22 }} />
+                                        </View>
+                                        <View style={{ left: 20, margin: 5 }}>
+                                            <Text style={{ color: AppColors.blackText, fontSize: 12, fontWeight: '700' }}>{item.likesCount} Likes</Text>
+                                            <Text style={{ color: AppColors.grayText, fontSize: 10, fontWeight: '700' }}>View all {item.commentsCount} Comments</Text>
+                                        </View>
 
+                                    </View>
                                 </View>
-                            </View>
-                        )
-                    }}
-                />
+                            )
+                        }}
+                    />
+                </View>
+
+
+            </ScrollView>
+            <View style={{ width: width }}>
+                <BottomTab screen={0}/>
             </View>
-
-
-
-        </ScrollView>
+        </View>
     )
 }
 
@@ -349,7 +370,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '25%',
         justifyContent: 'space-around',
-
+        alignItems: 'center'
     }
 
 })

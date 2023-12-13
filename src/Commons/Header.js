@@ -2,15 +2,17 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { AppColors } from '../Colors'
 import { AppText } from '../Text'
+import { useNavigation } from '@react-navigation/native'
 
-const Header = () => {
+const Header = ({  }) => {
+    const navigation = useNavigation()
     return (
         <View>
             <View style={styles.container}>
                 <Text style={styles.picspile}>{AppText.AppName}</Text>
-                <TouchableOpacity activeOpacity={0.8}>
+                <TouchableOpacity onPress={() => navigation.navigate('Message')} activeOpacity={0.8}>
                     <Image style={styles.image} resizeMode="contain"
-                        source={require('../Assets/Chat_Circle_Dots.png')} />
+                        source={require('../Assets/messenger.png')} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -28,8 +30,8 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        width: 35,
-        height: 35,
+        width: 30,
+        height: 30,
         marginRight: 12
     },
     picspile: {
