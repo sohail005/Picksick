@@ -9,9 +9,9 @@ const Header = () => {
             <View style={styles.container}>
                 <Text style={styles.picspile}>{AppText.AppName}</Text>
                 <TouchableOpacity activeOpacity={0.8}>
-                <Image style={styles.image} resizeMode="cover"
-                    source={require('../Assets/Chat_Circle_Dots.png')} />
-                    </TouchableOpacity>
+                    <Image style={styles.image} resizeMode="contain"
+                        source={require('../Assets/Chat_Circle_Dots.png')} />
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-
+        margin: 5
 
     },
     image: {
