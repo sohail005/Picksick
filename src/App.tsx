@@ -11,6 +11,7 @@ import AddPost from "./Screens/AddPost";
 import Profile from "./Screens/Profile";
 import Message from "./Screens/Message";
 import RecentActivity from "./Screens/RecentActivity";
+import ShortVideos from "./Screens/ShortVideos";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(false);
@@ -59,6 +60,11 @@ const App = () => {
             <Stack.Screen
               name="Message"
               component={Message}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ShortVideos"
+              component={ShortVideos}
               options={{ headerShown: false }}
             />
 

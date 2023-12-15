@@ -197,9 +197,10 @@ const BottomTab = ({ screen }) => {
             <AnimatedBtn style={[styles.btn, animatedBtn2Style]} onPress={() => navigation.navigate('Search')}>
                 <Image resizeMode='contain' source={require('../Assets/search.png')} style={{ width: 26, height: 26, borderRadius: 10, tintColor: color2 }} />
             </AnimatedBtn>
-            <AnimatedBtn style={[styles.btn, animatedBtn3Style]} onPress={() => navigation.navigate('AddPost')}>
-                <Image resizeMode='contain' source={require('../Assets/add.png')} style={{ width: 26, height: 26, borderRadius: 10, tintColor: color3 }} />
+            <AnimatedBtn style={[styles.btn, animatedBtn3Style]} onPress={() => navigation.navigate('ShortVideos')}>
+                <Image resizeMode='contain' source={require('../Assets/play-button.png')} style={{ width: 26, height: 26, borderRadius: 10, tintColor: color3 }} />
             </AnimatedBtn>
+            
             <Menu
                 animationDuration={600}
                 visible={visible}

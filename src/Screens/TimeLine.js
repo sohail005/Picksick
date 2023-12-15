@@ -6,7 +6,7 @@ import { AppColors } from '../Colors';
 import Swiper from 'react-native-swiper';
 import BottomTab from '../Commons/BottomTab';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
-
+import * as Animatable from 'react-native-animatable';
 const data = [
     {
         user_id: 1,
@@ -268,65 +268,62 @@ const TimeLine = () => {
                 {/* Story container End*/}
                 {/* posts started */}
                 <View style={{ width: width, alignItems: 'center' }}>
-                    <FlatList
-                        data={posts}
-                        keyExtractor={(item) => item.id}
-                        alwaysBounceVertical={true}
-                        renderItem={({ item, index }) => {
-                            return (
-                                <View style={{ width: width - 30 }}>
-                                    <View style={styles.itemContainer}>
-                                        <View style={styles.itemContainerTop}>
-                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <Image source={{ uri: item.profile }} style={styles.itemProfileimage} />
-                                                <View style={{ left: 5 }}>
-                                                    <Text style={{ color: AppColors.blackText, fontSize: 16 }}>{item.username}</Text>
-                                                    <Text style={{ color: AppColors.grayText, fontSize: 10 }}>{item.postTime}. {item.location}</Text>
-                                                </View>
+                    {posts.map((item, index) => {
+                        return (
+                            <Animatable.View animation="fadeInUp" duration={1000} delay={index * 300} key={index} style={{ width: width - 30 }}>
+                                <View style={styles.itemContainer}>
+                                    <View style={styles.itemContainerTop}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <Image source={{ uri: item.profile }} style={styles.itemProfileimage} />
+                                            <View style={{ left: 5 }}>
+                                                <Text style={{ color: AppColors.blackText, fontSize: 16 }}>{item.username}</Text>
+                                                <Text style={{ color: AppColors.grayText, fontSize: 10 }}>{item.postTime}. {item.location}</Text>
                                             </View>
-                                            <Image source={require('../Assets/dots.png')} resizeMode='contain' style={{ height: 20,width:30, marginRight: 10 }} />
                                         </View>
-                                        <View style={{ width: '100%', height: height / 3.5 }}>
-                                            <Swiper loop={false} loadMinimal={true} animated={true}
-                                            automaticallyAdjustContentInsets={true}
-                                            loadMinimalLoader={<ActivityIndicator color={AppColors.pinkColor}/>}
-                                            style={{}} showsButtons={false} activeDotColor={AppColors.pinkColor} >
-                                                {item.images.map((itemimg) => {
-                                                    return (
-                                                        <View key={itemimg.id} style={{ margin: 12, borderRadius: 15, elevation: 5}}>
-                                                            <Image source={{ uri: itemimg.image }} resizeMode='cover' style={{ width: '100%', height: '100%', borderRadius: 15, }} />
-                                                        </View>
-                                                    )
-                                                })
-                                                }
-                                            </Swiper>
-                                        </View>
-                                        {/* like and comments control */}
-                                        <View style={styles.controlsContainer}>
-                                            {item.liked ?
-                                                <Image source={require('../Assets/heartred.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
-                                                :
-                                                <Image source={require('../Assets/heart.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
-                                            }
-                                            <Image source={require('../Assets/speech-bubble.png')} resizeMode='contain' style={{ height: 24, width: 24, tintColor: '#000' }} />
-                                            <Image source={require('../Assets/send.png')} resizeMode='contain' style={{ height: 22, width: 22 }} />
-                                        </View>
-                                        <View style={{ left: 20, margin: 5 }}>
-                                            <Text style={{ color: AppColors.blackText, fontSize: 12, fontWeight: '700' }}>{item.likesCount} Likes</Text>
-                                            <Text style={{ color: AppColors.grayText, fontSize: 10, fontWeight: '700' }}>View all {item.commentsCount} Comments</Text>
-                                        </View>
-
+                                        <Image source={require('../Assets/dots.png')} resizeMode='contain' style={{ height: 20, width: 30, marginRight: 10 }} />
                                     </View>
+                                    <View style={{ width: '100%', height: height / 3.5 }}>
+                                        <Swiper loop={false} loadMinimal={true} animated={true}
+                                            automaticallyAdjustContentInsets={true}
+                                            loadMinimalLoader={<ActivityIndicator color={AppColors.pinkColor} />}
+                                            style={{}} showsButtons={false} activeDotColor={AppColors.pinkColor} >
+                                            {item.images.map((itemimg) => {
+                                                return (
+                                                    <View key={itemimg.id} style={{ margin: 12, borderRadius: 15, elevation: 5 }}>
+                                                        <Image source={{ uri: itemimg.image }} resizeMode='cover' style={{ width: '100%', height: '100%', borderRadius: 15, }} />
+                                                    </View>
+                                                )
+                                            })
+                                            }
+                                        </Swiper>
+                                    </View>
+                                    {/* like and comments control */}
+                                    <View style={styles.controlsContainer}>
+                                        {item.liked ?
+                                            <Image source={require('../Assets/heartred.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
+                                            :
+                                            <Image source={require('../Assets/heart.png')} resizeMode='contain' style={{ height: 25, width: 25 }} />
+                                        }
+                                        <Image source={require('../Assets/speech-bubble.png')} resizeMode='contain' style={{ height: 24, width: 24, tintColor: '#000' }} />
+                                        <Image source={require('../Assets/send.png')} resizeMode='contain' style={{ height: 22, width: 22 }} />
+                                    </View>
+                                    <View style={{ left: 20, margin: 5 }}>
+                                        <Text style={{ color: AppColors.blackText, fontSize: 12, fontWeight: '700' }}>{item.likesCount} Likes</Text>
+                                        <Text style={{ color: AppColors.grayText, fontSize: 10, fontWeight: '700' }}>View all {item.commentsCount} Comments</Text>
+                                    </View>
+
                                 </View>
-                            )
-                        }}
-                    />
+                            </Animatable.View>
+                        )
+                    })
+                    }
+
                 </View>
 
 
             </ScrollView>
             <View style={{ width: width }}>
-                <BottomTab screen={0}/>
+                <BottomTab screen={0} />
             </View>
         </View>
     )

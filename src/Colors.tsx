@@ -6,5 +6,6 @@ export const AppColors={
     pinkColor:'#FF00B8',
     lightpinkColor:'#eb67d9',
     Error:'red',
-    transparent:'rgba(52, 52, 52, 0.6)'
+    transparent:'rgba(52, 52, 52, 0.6)',
+    lightGray:'#ccc'
 }

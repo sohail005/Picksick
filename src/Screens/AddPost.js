@@ -11,9 +11,7 @@ const AddPost = () => {
 
 
 
-            <View style={{ width: width,position:'absolute',bottom:0 }}>
-                <BottomTab screen={2} />
-            </View>
+           
         </View>
     )
 }
