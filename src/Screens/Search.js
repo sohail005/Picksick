@@ -4,7 +4,7 @@ import BottomTab from '../Commons/BottomTab'
 import { AppColors } from '../Colors';
 import SearchlistItem from '../Commons/SearchlistItem';
 
-const Search = () => {
+const Search = ({navigation}) => {
     const { height, width, fontScale } = useWindowDimensions();
     const [searchText, setSearchText] = useState("")
     const data = [
@@ -43,7 +43,7 @@ const Search = () => {
         }
     ]
     return (
-        <View style={{ flex: 1, height: height }}>
+        <View style={{ flex: 1, height: height,backgroundColor:AppColors.backgroundColor }}>
 
             <View style={styles.inputConatiner}>
                 <TextInput
@@ -68,7 +68,7 @@ const Search = () => {
 
 
             <View style={{ width: width, position: 'absolute', bottom: 0 }}>
-                <BottomTab screen={1} />
+                <BottomTab screen={1} navigation={navigation}/>
             </View>
         </View>
     )
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row', alignItems: 'center',
         backgroundColor: AppColors.backgroundColor,
         margin: 15,
-        borderRadius: 100 / 2, height: 40
+        borderRadius: 100 / 2, height: 40,
+        elevation:2
     },
 
 })

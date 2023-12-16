@@ -11,9 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import LinearGradient from 'react-native-linear-gradient';
 const AnimatedBtn = Animated.createAnimatedComponent(TouchableOpacity)
-const BottomTab = ({ screen }) => {
+const BottomTab = ({ navigation,screen }) => {
     const { height, width } = useWindowDimensions();
-    const navigation = useNavigation()
+   // const navigation = useNavigation()
     const selected = screen;
     const [visible, setVisible] = useState(false);
     const hideMenu = () => setVisible(false);
@@ -201,30 +201,9 @@ const BottomTab = ({ screen }) => {
                 <Image resizeMode='contain' source={require('../Assets/play-button.png')} style={{ width: 26, height: 26, borderRadius: 10, tintColor: color3 }} />
             </AnimatedBtn>
             
-            <Menu
-                animationDuration={600}
-                visible={visible}
-                style={{ backgroundColor: AppColors.transparent, marginLeft: -40, borderRadius: 15 }}
-                anchor={<AnimatedBtn style={[styles.btn, animatedBtn4Style]} onPress={() => navigation.navigate('RecentActivity')}>
-                    <Image resizeMode='contain' source={require('../Assets/heartbtm.png')} style={{ width: 28, height: 28, borderRadius: 10, tintColor: color4 }} />
-                </AnimatedBtn>}
-                onRequestClose={hideMenu}
-            >
-                <LinearGradient colors={[AppColors.pinkColor, AppColors.lightpinkColor]} style={{ borderRadius: 15 }}>
-                    <MenuItem disableds >
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Image resizeMode='contain' source={require('../Assets/newheart.png')} style={{ width: 22, height: 22, tintColor: AppColors.whiteText }} />
-                                <Text style={{ color: AppColors.whiteText, fontSize: 14, marginLeft: 2 }}>22</Text>
-                            </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                                <Image resizeMode='contain' source={require('../Assets/speech-bubble1.png')} style={{ width: 20, height: 20, tintColor: AppColors.whiteText }} />
-                                <Text style={{ color: AppColors.whiteText, fontSize: 14, marginLeft: 2 }}>12</Text>
-                            </View>
-                        </View>
-                    </MenuItem>
-                </LinearGradient>
-            </Menu>
+            <AnimatedBtn style={[styles.btn, animatedBtn4Style]} onPress={() => navigation.navigate('AddPost')}>
+                    <Image resizeMode='contain' source={require('../Assets/add.png')} style={{ width: 28, height: 28, borderRadius: 10, tintColor: color4 }} />
+                </AnimatedBtn>
             <AnimatedBtn style={[styles.btn, animatedBtn5Style]} onPress={() => navigation.navigate('Profile')}>
                 <Image resizeMode='cover' source={{uri:'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png'}} style={{ width: 26, height: 30, borderRadius: 10 }} />
             </AnimatedBtn>
@@ -244,7 +223,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: AppColors.backgroundColor,
-        bottom: 0
+        bottom: 0,
+        borderTopWidth:1,
     },
     movingView: {
         backgroundColor: AppColors.pinkColor, //'#00A8AA',//'#008080',

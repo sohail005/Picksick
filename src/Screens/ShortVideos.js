@@ -33,7 +33,7 @@ const ShortVideos = ({ navigation }) => {
 
 
             <View style={{ width: width, position: 'absolute', bottom: 0 }}>
-                <BottomTab screen={2} />
+                <BottomTab screen={2} navigation={navigation}/>
             </View>
         </View>
     )

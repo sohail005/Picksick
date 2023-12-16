@@ -152,7 +152,7 @@ const Profile = ({navigation}) => {
 
                         {posts.map((item, index) => {
                             return (
-                                <Animatable.View animation="fadeInUp" duration={500} delay={index * 300} key={index} style={{ width: width - 30 }}>
+                                <Animatable.View animation="zoomIn" duration={500} delay={index * 300} key={index} style={{ width: width - 30 }}>
                                     <View style={styles.itemContainer}>
                                         <View style={styles.itemContainerTop}>
                                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -221,7 +221,7 @@ const Profile = ({navigation}) => {
                     <View style={{}}>
                         {FolowersData.map((item, index) => {
                             return (
-                                <Animatable.View animation="fadeInUp" duration={500} delay={index * 300} key={index} style={styles.floowerslistContainer}>
+                                <Animatable.View animation="zoomIn" duration={300} delay={index * 200} key={index} style={styles.floowerslistContainer}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <Image source={{ uri: item.image }} resizeMode='cover' style={{ width: 50, height: 50, borderRadius: 100 / 2, marginHorizontal: 5, marginVertical: 5 }} />
                                         <View style={{}}>
@@ -273,7 +273,7 @@ const Profile = ({navigation}) => {
                     <View style={{}}>
                         {FolowersData.map((item, index) => {
                             return (
-                                <Animatable.View animation="fadeInUp" duration={300} delay={index * 200} key={index} style={styles.floowerslistContainer}>
+                                <Animatable.View animation="zoomIn" duration={300} delay={index * 200} key={index} style={styles.floowerslistContainer}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <Image source={{ uri: item.image }} resizeMode='cover' style={{ width: 50, height: 50, borderRadius: 100 / 2, marginHorizontal: 5, marginVertical: 5 }} />
                                         <View style={{}}>
@@ -296,7 +296,7 @@ const Profile = ({navigation}) => {
 
 
             <View style={{ width: width, position: 'absolute', bottom: 0 }}>
-                <BottomTab screen={4} />
+                <BottomTab screen={4} navigation={navigation}/>
             </View>
         </View>
     )
@@ -310,7 +310,8 @@ const styles = StyleSheet.create({
         elevation: 10,
         flexDirection: 'row',
         borderRadius: 20,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginHorizontal:10
     },
     viewcontrols: {
         flexDirection: 'row',

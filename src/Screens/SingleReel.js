@@ -2,11 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, useWindowDimensions } 
 import React, { useRef, useState } from 'react'
 import Video from 'react-native-video';
 import { AppColors } from '../Colors';
+import { useNavigation } from '@react-navigation/native';
 
-const SingleReel = ({ item, index, currentIndex }) => {
+const SingleReel = ({ item, index, currentIndex, }) => {
     const videoRef = useRef(null);
     const { height, width, fontScale } = useWindowDimensions();
-
+const navigation = useNavigation();
     const onBuffer = buffer => {
         console.log('buffring', buffer);
     };
@@ -49,6 +50,12 @@ const SingleReel = ({ item, index, currentIndex }) => {
                     }}
                 />
             </TouchableOpacity>
+            <View style={styles.topView}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{}} activeOpacity={0.6}>
+                    <Image source={require('../Assets/backarrow.png')} style={{ width: 28, height: 28, tintColor: AppColors.whiteText, marginHorizontal: 10 }} />
+                </TouchableOpacity>
+                <Text style={{ color: AppColors.whiteText, fontSize: 18, marginLeft: 40 }}>ShortVideos</Text>
+            </View>
             <Image
                 source={require('../Assets/mute.png')}
                 style={{
@@ -98,17 +105,17 @@ const SingleReel = ({ item, index, currentIndex }) => {
                     <Text style={{ color: 'white', fontSize: 14, marginHorizontal: 10 }}>
                         {item.description}
                     </Text>
-                    <View style={{ flexDirection: 'row', padding: 10,marginBottom:40 }}>
-                    <Image
-                        source={require('../Assets/wave-sound.png')}
-                        style={{
-                            width: 20,
-                            height: 20,
-                            resizeMode: 'contain',
-                            tintColor: AppColors.whiteText,
-                            marginHorizontal:5
-                        }}
-                    />
+                    <View style={{ flexDirection: 'row', padding: 10, marginBottom: 40 }}>
+                        <Image
+                            source={require('../Assets/wave-sound.png')}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                resizeMode: 'contain',
+                                tintColor: AppColors.whiteText,
+                                marginHorizontal: 5
+                            }}
+                        />
 
                         <Text style={{ color: 'white' }}>Original Audio</Text>
                     </View>
@@ -193,4 +200,12 @@ const SingleReel = ({ item, index, currentIndex }) => {
 
 export default SingleReel
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    topView:{
+        top:10,
+        left:10,
+        position:'absolute',
+        alignItems:'center',
+        flexDirection:'row'
+    }
+})

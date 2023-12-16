@@ -3,7 +3,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, Pressable, TouchableOpacity, StatusBar } from "react-native";
 import Login from "./Screens/Login";
 import TimeLine from "./Screens/TimeLine";
 import Search from "./Screens/Search";
@@ -12,6 +12,8 @@ import Profile from "./Screens/Profile";
 import Message from "./Screens/Message";
 import RecentActivity from "./Screens/RecentActivity";
 import ShortVideos from "./Screens/ShortVideos";
+import { AppColors } from "./Colors";
+import Status from "./Commons/Status";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(false);
@@ -25,6 +27,7 @@ const App = () => {
   return (
     <>
       <NavigationContainer>
+        <StatusBar backgroundColor={AppColors.whiteText} barStyle={"dark-content"} />
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'push', animationDuration: 800, animation: 'ios' }}>
             <Stack.Screen
@@ -67,6 +70,12 @@ const App = () => {
               component={ShortVideos}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="Status"
+              component={Status}
+              options={{ headerShown: false }}
+            />
+
 
           </Stack.Navigator>
         ) : (

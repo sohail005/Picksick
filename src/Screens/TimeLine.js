@@ -7,6 +7,7 @@ import Swiper from 'react-native-swiper';
 import BottomTab from '../Commons/BottomTab';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import * as Animatable from 'react-native-animatable';
+import Stories from '../Commons/Stories';
 const data = [
     {
         user_id: 1,
@@ -200,7 +201,7 @@ const posts = [
         profile: 'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png'
     }
 ]
-const TimeLine = () => {
+const TimeLine = ({navigation}) => {
     const [stories, setStories] = useState([])
     const { height, width, fontScale } = useWindowDimensions();
 
@@ -239,38 +240,13 @@ const TimeLine = () => {
                 style={{ width: width, backgroundColor: AppColors.backgroundColor, flex: 1 }}>
                 <Header />
                 {/* Story container */}
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <View style={{ top: -13, marginRight: -15 }}>
-                        <View style={{ zIndex: 1 }}>
-                            <Image source={require('../Assets/Add_Plus_Circle.png')} style={styles.plusiconTop} />
-                        </View>
-                        <InstaStory
-                            data={userStories}
-                            duration={10}
-                            avatarSize={70}
-                            showAvatarText={true}
-                            unPressedBorderColor={AppColors.pinkColor}
-                            unPressedAvatarTextColor={AppColors.blackText}
-                        />
-                    </View>
-                    <View style={{ width: '80%', borderRadius: 100 / 2 }}>
-                        <InstaStory
-                            data={data}
-                            duration={10}
-                            avatarSize={70}
-                            showAvatarText={true}
-                            unPressedBorderColor={AppColors.pinkColor}
-                            unPressedAvatarTextColor={AppColors.blackText}
-
-                        />
-                    </View>
-                </View>
+                <Stories />
                 {/* Story container End*/}
                 {/* posts started */}
                 <View style={{ width: width, alignItems: 'center' }}>
                     {posts.map((item, index) => {
                         return (
-                            <Animatable.View animation="fadeInUp" duration={1000} delay={index * 300} key={index} style={{ width: width - 30 }}>
+                            <Animatable.View animation="zoomIn" duration={500} delay={index * 200} key={index} style={{ width: width - 30 }}>
                                 <View style={styles.itemContainer}>
                                     <View style={styles.itemContainerTop}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -323,7 +299,7 @@ const TimeLine = () => {
 
             </ScrollView>
             <View style={{ width: width }}>
-                <BottomTab screen={0} />
+                <BottomTab screen={0} navigation={navigation}/>
             </View>
         </View>
     )
