@@ -4,6 +4,7 @@ import { AppColors } from "../Colors";
 import CustomErrorMsg from "../Commons/CustomErrorMsg";
 import LinearGradient from "react-native-linear-gradient";
 import { AppText } from "../Text";
+import { useSelector } from "react-redux";
 
 const Login = ({ navigation }) => {
 	const { height, width, fontScale } = useWindowDimensions();
@@ -18,6 +19,9 @@ const Login = ({ navigation }) => {
 		navigation.navigate('TimeLine')
 	}
 
+	const backgroundColor = useSelector((state) => state?.background?.color);
+	const defaultTextColor = useSelector((state) => state?.background?.defaultTextColor);
+
 	const Warningpop = () => {
 		return (
 			<Modal
@@ -26,16 +30,16 @@ const Login = ({ navigation }) => {
 				animationType="none"
 			>
 				<View style={styles.modalContainer}>
-					<View style={[styles.centerView, { width: width - 150 }]}>
-						<Text style={styles.cantFindAccount1}>Cant find account</Text>
+					<View style={[styles.centerView, { width: width - 150, backgroundColor: backgroundColor, borderWidth: 0.5, borderColor: defaultTextColor }]}>
+						<Text style={[styles.cantFindAccount1, { color: defaultTextColor }]}>Cant find account?</Text>
 						<Text style={styles.weCantFind1}>we cant find an account with d.william. Try another phone number or email address, or if you don’t have an Picspile account, you can sign up.</Text>
 						<View style={styles.devider} />
 						<TouchableOpacity activeOpacity={0.8} style={styles.button1}>
-							<Text style={styles.tryAgain}>Try Again</Text>
+							<Text style={[styles.tryAgain, { color: defaultTextColor }]}>Try Again</Text>
 						</TouchableOpacity>
 						<View style={styles.devider} />
 						<TouchableOpacity onPress={() => CLoseModal()} activeOpacity={0.8} style={styles.button1}>
-							<Text style={styles.tryAgain}>Sign up</Text>
+							<Text style={[styles.tryAgain, { color: defaultTextColor }]}>Sign up</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -44,7 +48,7 @@ const Login = ({ navigation }) => {
 	}
 	return (
 
-		<View style={styles.container}>
+		<View style={[styles.container, { backgroundColor: backgroundColor }]}>
 
 			<Text style={[styles.logo, { fontSize: width / 5 }]}>{AppText.AppName}</Text>
 			<View style={[styles.inputContainer, { width: width - 100 }]}>

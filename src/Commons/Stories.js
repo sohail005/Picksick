@@ -3,18 +3,19 @@ import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import { AppColors } from '../Colors';
+import LinearGradient from 'react-native-linear-gradient';
 
-const Stories = () => {
+const Stories = (textColor) => {
     const navigation = useNavigation();
 
     const storyInfo = [
         {
-            id: 1,
+            id: 0,
             name: 'Your Story',
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU",
         },
         {
-            id: 0,
+            id: 1,
             name: 'Ram_Charan',
             image: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.1.1222169770.1702512000&semt=ais",
         },
@@ -36,7 +37,7 @@ const Stories = () => {
         },
         ,
         {
-            id: 0,
+            id: 5,
             name: 'chillhouse',
             image: "https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-man-wearing-glasses-is-wearing-colorful-background-image_2905240.jpg",
         },
@@ -46,10 +47,11 @@ const Stories = () => {
         <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            style={{ paddingVertical: 20 }}>
+            style={{ paddingVertical: 10,paddingBottom:0 }}>
             {storyInfo.map((data, index) => {
                 return (
                     <TouchableOpacity
+                    activeOpacity={0.8}
                         key={index}
                         onPress={() =>
                             navigation.push('Status', {
@@ -63,7 +65,7 @@ const Stories = () => {
                                 paddingHorizontal: 8,
                                 position: 'relative',
                             }}>
-                            {data.id == 1 ? (
+                            {data.id == 0 ? (
                                 <View
                                     style={{
                                         position: 'absolute',
@@ -71,22 +73,19 @@ const Stories = () => {
                                         right: 10,
                                         zIndex: 1,
                                     }}>
-                                    <Image source={require('../Assets/Add_Plus_Circle.png')} style={{ width: 25, height: 25}} />
+                                    <Image source={require('../Assets/Add_Plus_Circle.png')} style={{ width: 25, height: 25 }} />
                                 </View>
                             ) : null}
-                            <View
-                                style={{
-                                    width: 68,
-                                    height: 68,
-                                    backgroundColor: 'white',
-                                    borderWidth: 1.8,
-                                    borderRadius: 100,
-                                    borderColor: AppColors.pinkColor,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}>
+                            <LinearGradient colors={[AppColors.lightpinkColor, AppColors.pinkColor, AppColors.red]} style={{
+                                width: 68,
+                                height: 68,
+                                backgroundColor: 'white',
+                                borderRadius: 100 / 2,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}>
                                 <Image
-                                    source={{uri:data.image}}
+                                    source={{ uri: data.image }}
                                     style={{
                                         resizeMode: 'cover',
                                         width: '92%',
@@ -95,16 +94,18 @@ const Stories = () => {
                                         backgroundColor: 'orange',
                                     }}
                                 />
-                            </View>
+                            </LinearGradient>
                             <Text
                                 style={{
                                     textAlign: 'center',
                                     fontSize: 10,
                                     opacity: data.id == 0 ? 1 : 0.5,
+                                    color:'#fff',
+                                    padding:5
                                 }}>
                                 {data.name}
                             </Text>
-                            </Animatable.View>
+                        </Animatable.View>
                     </TouchableOpacity>
                 );
             })}

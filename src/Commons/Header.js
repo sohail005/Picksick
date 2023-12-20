@@ -3,15 +3,42 @@ import React from 'react'
 import { AppColors } from '../Colors'
 import { AppText } from '../Text'
 import { useNavigation } from '@react-navigation/native'
+import MaskedView from '@react-native-masked-view/masked-view'
+import LinearGradient from 'react-native-linear-gradient'
 
-const Header = ({  }) => {
+const Header = ({ title}) => {
     const navigation = useNavigation()
     return (
         <View>
             <View style={styles.container}>
-                <Text style={styles.picspile}>{AppText.AppName}</Text>
+
+                <MaskedView
+                    style={{ flex: 1, flexDirection: 'column', height: 30 }}
+                    maskElement={
+                        <View style={{                                // Transparent background because mask is based off alpha channel.
+                            backgroundColor: 'transparent',
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            marginLeft: 10,
+                        }}>
+                            <Text style={{
+                                fontSize: 28,
+                                color: AppColors.blackText,
+                                fontWeight: 'bold',
+                                fontFamily:'Montserrat-Medium'
+                            }}>{title}</Text>
+                        </View>
+                    }>
+                    {/* Shows behind the mask, you can put anything here, such as an image */}
+                    <View style={{ flex: 1, height: '100%', backgroundColor: AppColors.pinkColor }} />
+                    <View style={{ flex: 1, height: '100%', backgroundColor: AppColors.pinkColor }} />
+                    <View style={{ flex: 1, height: '100%', backgroundColor: AppColors.Error }} />
+
+                </MaskedView>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Message')} activeOpacity={0.8}>
-                    <Image style={styles.image} resizeMode="contain"
+                    <Image style={[styles.image,{tintColor:AppColors.pinkColor}]} resizeMode="contain"
                         source={require('../Assets/messenger.png')} />
                 </TouchableOpacity>
             </View>
@@ -26,12 +53,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: 5
+        marginVertical: 5
 
     },
     image: {
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
         marginRight: 12
     },
     picspile: {

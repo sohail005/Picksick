@@ -10,10 +10,11 @@ import { AppColors } from '../Colors';
 import { useNavigation } from '@react-navigation/native';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSelector } from 'react-redux';
 const AnimatedBtn = Animated.createAnimatedComponent(TouchableOpacity)
-const BottomTab = ({ navigation,screen }) => {
+const BottomTab = ({ navigation, screen }) => {
     const { height, width } = useWindowDimensions();
-   // const navigation = useNavigation()
+    // const navigation = useNavigation()
     const selected = screen;
     const [visible, setVisible] = useState(false);
     const hideMenu = () => setVisible(false);
@@ -186,11 +187,18 @@ const BottomTab = ({ navigation,screen }) => {
             ]
         }
     })
+    const backgroundColor = useSelector((state) => state.background.color);
 
 
     return (
-        <View style={styles.constiner}>
-            <Animated.View style={[styles.movingView, animatedStyle]}></Animated.View>
+        <View style={[styles.constiner,{backgroundColor:backgroundColor}]}>
+
+            <AnimatedBtn style={[styles.movingView, animatedStyle]}>
+                <LinearGradient colors={[AppColors.lightpinkColor, AppColors.pinkColor, AppColors.red]} style={{ borderRadius: 20 }}>
+                    <View style={{ width: 50, height: 50, borderRadius: 20 }}></View>
+                </LinearGradient>
+            </AnimatedBtn>
+
             <AnimatedBtn style={[styles.btn, animatedBtn1Style]} onPress={() => navigation.navigate('TimeLine')}>
                 <Image resizeMode='contain' source={require('../Assets/home1.png')} style={{ width: 30, height: 30, borderRadius: 10, tintColor: color1 }} />
             </AnimatedBtn>
@@ -200,12 +208,12 @@ const BottomTab = ({ navigation,screen }) => {
             <AnimatedBtn style={[styles.btn, animatedBtn3Style]} onPress={() => navigation.navigate('ShortVideos')}>
                 <Image resizeMode='contain' source={require('../Assets/play-button.png')} style={{ width: 26, height: 26, borderRadius: 10, tintColor: color3 }} />
             </AnimatedBtn>
-            
+
             <AnimatedBtn style={[styles.btn, animatedBtn4Style]} onPress={() => navigation.navigate('AddPost')}>
-                    <Image resizeMode='contain' source={require('../Assets/add.png')} style={{ width: 28, height: 28, borderRadius: 10, tintColor: color4 }} />
-                </AnimatedBtn>
+                <Image resizeMode='contain' source={require('../Assets/add.png')} style={{ width: 28, height: 28, borderRadius: 10, tintColor: color4 }} />
+            </AnimatedBtn>
             <AnimatedBtn style={[styles.btn, animatedBtn5Style]} onPress={() => navigation.navigate('Profile')}>
-                <Image resizeMode='cover' source={{uri:'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png'}} style={{ width: 26, height: 30, borderRadius: 10 }} />
+                <Image resizeMode='cover' source={{ uri: 'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png' }} style={{ width: 26, height: 30, borderRadius: 10 }} />
             </AnimatedBtn>
 
         </View>
@@ -222,9 +230,8 @@ const styles = StyleSheet.create({
         bottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        backgroundColor: AppColors.backgroundColor,
         bottom: 0,
-        borderTopWidth:1,
+        borderTopWidth: 1,
     },
     movingView: {
         backgroundColor: AppColors.pinkColor, //'#00A8AA',//'#008080',
@@ -233,9 +240,9 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         position: 'absolute',
         marginVertical: 5,
-        elevation: 10, shadowColor: 'white', shadowOpacity: 0.5, shadowRadius: 3
+        elevation: 10, shadowColor: AppColors.grayText, shadowOpacity: 0.5, shadowRadius: 3
     },
     btn: {
-       
+
     }
 })
