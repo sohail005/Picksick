@@ -13,6 +13,7 @@ import ShortVideos from './Screens/ShortVideos';
 import Message from './Screens/Message';
 import Status from './Commons/Status';
 import { useSelector } from 'react-redux';
+import TextToSpeach from './Screens/TextToSpeach';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,7 +33,7 @@ const Navigations = () => {
         <NavigationContainer>
             <StatusBar backgroundColor={backgroundColor} barStyle={defaultTextColor === 'black' ? "dark-content" : "light-content"} />
             {hideSplashScreen ? (
-                <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'push', animationDuration: 800, animation: 'ios' }}>
+                <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'push', animationDuration: 500, animation: 'ios' }}>
                     <Stack.Screen
                         name="Login"
                         component={Login}
@@ -76,6 +77,11 @@ const Navigations = () => {
                     <Stack.Screen
                         name="Status"
                         component={Status}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="TextToSpeach"
+                        component={TextToSpeach}
                         options={{ headerShown: false }}
                     />
 

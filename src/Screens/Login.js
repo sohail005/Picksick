@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View, Image, useWindowDimensions, TextInput, TouchableOpacity, ScrollView, Modal } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, StyleSheet, View, Image, useWindowDimensions, TextInput, TouchableOpacity, ScrollView, Modal, PermissionsAndroid } from "react-native";
 import { AppColors } from "../Colors";
 import CustomErrorMsg from "../Commons/CustomErrorMsg";
 import LinearGradient from "react-native-linear-gradient";
@@ -12,7 +12,37 @@ const Login = ({ navigation }) => {
 	const [password, setPassword] = useState("");
 	const [usernameErr, setUsernameErr] = useState("");
 	const [passwordErr, setPasswordErr] = useState("");
-	const [modal, setModal] = useState(true);
+	const [modal, setModal] = useState(false);
+
+
+	useEffect(() => {
+		requestCameraPermission()
+	}, [])
+
+	const requestCameraPermission = async () => {
+		try {
+			const granted = await PermissionsAndroid.request(
+				PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+				{
+					title: 'Cool Photo App Camera Permission',
+					message:
+						'Cool Photo App needs access to your camera ' +
+						'so you can take awesome pictures.',
+					buttonNeutral: 'Ask Me Later',
+					buttonNegative: 'Cancel',
+					buttonPositive: 'OK',
+				},
+			);
+			if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+				console.log('You can use the camera');
+			} else {
+				console.log('Camera permission denied');
+			}
+		} catch (err) {
+			console.warn(err);
+		}
+	};
+
 
 	const CLoseModal = () => {
 		setModal(false)

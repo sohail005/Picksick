@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import MaskedView from '@react-native-masked-view/masked-view'
 import LinearGradient from 'react-native-linear-gradient'
 
-const Header = ({ title}) => {
+const Header = ({ title }) => {
     const navigation = useNavigation()
     return (
         <View>
@@ -26,7 +26,7 @@ const Header = ({ title}) => {
                                 fontSize: 28,
                                 color: AppColors.blackText,
                                 fontWeight: 'bold',
-                                fontFamily:'Montserrat-Medium'
+                                fontFamily: 'Montserrat-Medium'
                             }}>{title}</Text>
                         </View>
                     }>
@@ -37,8 +37,13 @@ const Header = ({ title}) => {
 
                 </MaskedView>
 
+
+                <TouchableOpacity onPress={() => navigation.navigate('TextToSpeach')} style={{ marginRight: 10 }} activeOpacity={0.8}>
+                    <Image style={[styles.image, { tintColor: AppColors.pinkColor }]} resizeMode="cover"
+                        source={require('../Assets/voice.png')} />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Message')} activeOpacity={0.8}>
-                    <Image style={[styles.image,{tintColor:AppColors.pinkColor}]} resizeMode="contain"
+                    <Image style={[styles.image, { tintColor: AppColors.pinkColor }]} resizeMode="contain"
                         source={require('../Assets/messenger.png')} />
                 </TouchableOpacity>
             </View>

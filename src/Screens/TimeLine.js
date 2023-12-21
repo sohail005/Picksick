@@ -11,158 +11,8 @@ import Stories from '../Commons/Stories';
 import { useSelector } from 'react-redux';
 import { languages } from '../Commons/MultiLaguage';
 import { AppText } from '../Text';
-const data = [
-    {
-        user_id: 1,
-        user_image:
-            'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
-        user_name: 'Ahmet Çağlar Durmuş',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://image.freepik.com/free-vector/mobile-wallpaper-with-fluid-shapes_79603-601.jpg',
-            },
-        ],
-    },
-    {
-        user_id: 2,
-        user_image:
-            'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        user_name: 'Test User',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://files.oyebesmartest.com/uploads/preview/vivo-u20-mobile-wallpaper-full-hd-(1)qm6qyz9v60.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 2 swiped'),
-            },
-        ],
-    },
-    {
-        user_id: 3,
-        user_image:
-            'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
-        user_name: 'Ahmet Çağlar Durmuş',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://image.freepik.com/free-vector/mobile-wallpaper-with-fluid-shapes_79603-601.jpg',
-            },
-        ],
-    },
-    {
-        user_id: 4,
-        user_image:
-            'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        user_name: 'Test User',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://files.oyebesmartest.com/uploads/preview/vivo-u20-mobile-wallpaper-full-hd-(1)qm6qyz9v60.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 2 swiped'),
-            },
-        ],
-    },
-    {
-        user_id: 5,
-        user_image:
-            'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        user_name: 'Test User',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://files.oyebesmartest.com/uploads/preview/vivo-u20-mobile-wallpaper-full-hd-(1)qm6qyz9v60.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 2 swiped'),
-            },
-        ],
-    },
-    {
-        user_id: 6,
-        user_image:
-            'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        user_name: 'Test User',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://files.oyebesmartest.com/uploads/preview/vivo-u20-mobile-wallpaper-full-hd-(1)qm6qyz9v60.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 2 swiped'),
-            },
-        ],
-    },
-    {
-        user_id: 7,
-        user_image:
-            'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        user_name: 'Test User',
-        stories: [
-            {
-                story_id: 1,
-                story_image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 1 swiped'),
-            },
-            {
-                story_id: 2,
-                story_image:
-                    'https://files.oyebesmartest.com/uploads/preview/vivo-u20-mobile-wallpaper-full-hd-(1)qm6qyz9v60.jpg',
-                swipeText: 'Custom swipe text for this story',
-                onPress: () => console.log('story 2 swiped'),
-            },
-        ],
-    }
-];
+import Tts from 'react-native-tts';
+
 const posts = [
     {
         id: 0,
@@ -205,26 +55,7 @@ const posts = [
     }
 ]
 const TimeLine = ({ navigation }) => {
-    const [stories, setStories] = useState([])
     const { height, width, fontScale } = useWindowDimensions();
-
-    const userStories = [
-        {
-            user_id: 2,
-            user_image:
-                'https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png',
-            user_name: 'Test User',
-            stories: [
-                {
-                    story_id: 1,
-                    story_image:
-                        'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
-                    swipeText: 'Custom swipe text for this story',
-                    onPress: () => console.log('story 1 swiped'),
-                }
-            ],
-        }
-    ]
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -234,6 +65,7 @@ const TimeLine = ({ navigation }) => {
             setRefreshing(false);
         }, 2000);
     }, []);
+
 
     const backgroundColor = useSelector((state) => state?.background?.color);
     const defaultTextColor = useSelector((state) => state?.background?.defaultTextColor);
