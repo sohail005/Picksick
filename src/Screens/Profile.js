@@ -10,18 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeBackgroundColor, changeDefaultTextColor, changeLanguage } from '../Redux/slices/backgroundSlice';
 import { languages } from '../Commons/MultiLaguage';
 
-const data = [
-    { id: 0, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU' },
-    { id: 1, image: 'https://i.pinimg.com/474x/9f/e4/e4/9fe4e42a2f83f78caef84579c1f1980b.jpg' },
-    { id: 9, image: 'https://i.pinimg.com/474x/9f/e4/e4/9fe4e42a2f83f78caef84579c1f1980b.jpg' },
-    { id: 8, image: 'https://i.pinimg.com/474x/9f/e4/e4/9fe4e42a2f83f78caef84579c1f1980b.jpg' },
-    { id: 2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU' },
-    { id: 3, image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg' },
-    { id: 4, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrgPZ6g7_YYiFVaaSob7On-O9eWvQJfkmLkl_CkJOHP7pvGijGKq-NqlDVDdZQ8_V22pQ&usqp=CAU' },
-    { id: 5, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU' },
-    { id: 6, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU' },
-    { id: 7, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpDcmO22c2BCvZeEI6jctj8o65_W7Q5VDpJJ4CLbyFQgdU3fIDGHweRm34CR5QVgtoFwk&usqp=CAU' },
-]
+
 const FolowersData = [
     { id: 0, name: 'Sohail.code', image: 'https://i.pinimg.com/474x/9f/e4/e4/9fe4e42a2f83f78caef84579c1f1980b.jpg', followingtime: 'Friends since 6 Feburary 2022' },
     { id: 1, name: 'Priya Bhanushali', image: 'https://i.pinimg.com/474x/9f/e4/e4/9fe4e42a2f83f78caef84579c1f1980b.jpg', followingtime: 'Friends since 6 Feburary 2022' },

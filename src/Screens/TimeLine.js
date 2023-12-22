@@ -1,6 +1,5 @@
 import { ActivityIndicator, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
-import InstaStory from 'react-native-insta-story';
 import Header from '../Commons/Header';
 import { AppColors } from '../Colors';
 import Swiper from 'react-native-swiper';
@@ -11,7 +10,6 @@ import Stories from '../Commons/Stories';
 import { useSelector } from 'react-redux';
 import { languages } from '../Commons/MultiLaguage';
 import { AppText } from '../Text';
-import Tts from 'react-native-tts';
 
 const posts = [
     {
